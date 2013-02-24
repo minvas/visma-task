@@ -10,11 +10,14 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Internal page</h1>
-	<h:form>
-		<p:commandButton value="Logout" action="#{login.logout}" />
-	</h:form>
-	<hr/>
-	<h:link value="Change password" outcome="changePassword"></h:link>
+	<h3 style="font-family: Tahoma, Arial, sans-serif;color: grey;">Server time</h3>  
+	<p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server" /> 
+	<p:fieldset legend="Now working: #{login.username}" style="margin-top:50px;width:300px;margin-right:auto;margin-left:auto;">
+		<h:form>
+			<p:commandButton value="Logout" action="#{login.logout}" />
+		</h:form>
+		<hr/>
+		<h:link value="Change password" outcome="changePassword"/>
+	</p:fieldset>
 </h:body>
 </html>
