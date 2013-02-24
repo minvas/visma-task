@@ -1,4 +1,4 @@
-visma-task
+PrimeFaces playground
 ==========
 
 Small project using JSF with PrimeFaces v3.5
