@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panelGrid columns="2" style="margin-left:auto;margin-right:auto;">
+			<f:facet name="header">
+				<h:outputLabel value="Login"></h:outputLabel>
+			</f:facet>
+			<h:outputLabel for="username" value="Username"></h:outputLabel>
+			<p:inputText id="username" value="#{login.username}" required="true"></p:inputText>
+			
+			
+			<h:outputLabel for="password" value="Password"></h:outputLabel>
+			<p:password id="password" value="#{login.password}"></p:password>
+			
+			<f:facet name="footer">
+				<p:commandButton type="submit" value="Login" action="#{login.login}" ajax="false"/>	
+				<h:link value="Register" outcome="registration" style="margin-left:20px;"></h:link>
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

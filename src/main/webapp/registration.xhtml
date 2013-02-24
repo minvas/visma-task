@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Registration">
+		<p:messages globalOnly="true" autoUpdate="true"/>
+			<h:panelGrid id="registrationGrid" columns="4">
+	            <h:outputLabel for="username" value="Username: *" />  
+	            <p:inputText id="username" value="#{registration.username}" label="Username" required="true">
+	            	<f:validateRegex pattern="(^[a-zA-Z]+$)"/>
+	            	<f:validateLength minimum="3" maximum="8"/>
+	            </p:inputText>
+	            <h:outputLabel value="Length: 3-8 (only letters)"></h:outputLabel>
+	            <p:message for="username" display="text"/>
+	            
+	           	<h:outputLabel for="email" value="Email: *" />  
+	            <p:inputText id="email" value="#{registration.email}" label="Email" required="true">
+	           		<f:validateRegex pattern="(^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$)"/>
+	           	</p:inputText>
+	            <h:outputLabel value=""></h:outputLabel>
+	            <p:message for="email" display="text"/>
+	            
+	            <h:outputLabel for="password1" value="Password: *"/>  
+	            <p:password id="password1" value="#{registration.password1}" label="Password" required="true" match="password2">
+	            	<f:validateLength minimum="4"/>
+	            </p:password>
+	            <h:outputLabel value="Minimum length: 4 symbols"></h:outputLabel>
+	            <p:message for="password1" display="text"/>
+	            
+	            <h:outputLabel for="password2" value="Repeat password *:" />  
+	            <p:password id="password2" value="#{registration.password2}" label="Repeat password" required="true"/>
+	            <h:outputLabel value=""></h:outputLabel>
+	            <p:message for="password2" display="text"/>
+			</h:panelGrid>
+			
+			<p:commandButton type="submit" value="Register" action="#{registration.register}" update="registrationGrid"/>
+			<p:commandLink value="Back" onclick="history.go(-1)" style="margin-left:100px;"/>
+		</p:panel> 
+	</h:form>
+</h:body>
+</html>
