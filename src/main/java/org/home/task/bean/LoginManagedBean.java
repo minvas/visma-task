@@ -7,8 +7,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import org.home.task.entity.User;
-
 @ManagedBean(name = "login")
 @SessionScoped
 public class LoginManagedBean implements Serializable {
@@ -47,8 +45,7 @@ public class LoginManagedBean implements Serializable {
 	}
 
 	public String login() {
-		User user = this.userManagedBean.getByUsername(this.username);
-		if (user != null && user.getPassword().equals(password)) {
+		if (this.userManagedBean.authenticate(username, password)) {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(AUTH_KEY, username);
 			return "internal?faces-redirect=true";
 		}

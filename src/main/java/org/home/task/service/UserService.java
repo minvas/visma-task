@@ -1,7 +1,6 @@
 package org.home.task.service;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +55,30 @@ public class UserService implements Serializable {
 		}
 	}
 
-	public Collection<User> getAllUsers() {
-		return USERS.values();
+	public void deleteUser(String username) {
+		User user;
+		for (Integer userId : USERS.keySet()) {
+			user = USERS.get(userId);
+			if (user.getUsername().equals(username)) {
+				USERS.remove(userId);
+				break;
+			}
+		}
+	}
+
+	public boolean userExists(String username) {
+		if (getUserByUsername(username) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean authenticate(String username, String password) {
+		for (User user : USERS.values()) {
+			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

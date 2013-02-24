@@ -5,8 +5,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
-import org.home.task.entity.User;
-
 @ManagedBean(name = "registration")
 public class RegistrationManagedBean {
 
@@ -73,8 +71,8 @@ public class RegistrationManagedBean {
 	}
 
 	public String register() {
-		User user = this.userManagedBean.getByUsername(this.username);
-		if (user != null) {
+		boolean userExists = this.userManagedBean.isUsernameTaken(this.username);
+		if (userExists) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "This username was taken by someone else.", null));
 		} else {

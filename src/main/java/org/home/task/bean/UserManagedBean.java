@@ -1,12 +1,10 @@
 package org.home.task.bean;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import org.home.task.entity.User;
 import org.home.task.service.UserService;
 
 @ManagedBean(name = "user")
@@ -24,11 +22,15 @@ public class UserManagedBean implements Serializable {
 		this.userService.updateUserPassword(username, newPassword);
 	}
 
-	public User getByUsername(String username) {
-		return this.userService.getUserByUsername(username);
+	public boolean isUsernameTaken(String username) {
+		return userService.userExists(username);
 	}
 
-	public Collection<User> getUsers() {
-		return this.userService.getAllUsers();
+	public boolean authenticate(String username, String password) {
+		return userService.authenticate(username, password);
+	}
+
+	public void deleteUser(String username) {
+		this.userService.deleteUser(username);
 	}
 }

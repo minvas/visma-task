@@ -5,8 +5,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
-import org.home.task.entity.User;
-
 @ManagedBean(name = "password")
 public class PasswordManagedBean {
 
@@ -61,18 +59,16 @@ public class PasswordManagedBean {
 	}
 
 	public String changePassword() {
-		User user = userManagedBean.getByUsername(loginManagedBean.getUsername());
-		if (user != null) {
-			if (!user.getPassword().equals(this.currentPassword)) {
-				FacesContext.getCurrentInstance().addMessage("passwordChangeForm:currentPassword",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Password is not correct", null));
-				return null;
-			} else {
-				userManagedBean.changePassword(user.getUsername(), newPassword1);
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Password was changed successfully.", null));
-			}
+		if (!userManagedBean.authenticate(this.loginManagedBean.getUsername(), this.currentPassword)) {
+			FacesContext.getCurrentInstance().addMessage("passwordChangeForm:currentPassword",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Password is not correct", null));
+			return null;
+		} else {
+			userManagedBean.changePassword(this.loginManagedBean.getUsername(), this.newPassword1);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Password was changed successfully.", null));
 		}
+
 		return null;
 	}
 }

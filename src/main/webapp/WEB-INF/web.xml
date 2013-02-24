@@ -44,4 +44,8 @@
 	  <filter-name>Authentication</filter-name>
 	  <url-pattern>/changePassword.xhtml</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+	  <filter-name>Authentication</filter-name>
+	  <url-pattern>/deleteUser.xhtml</url-pattern>
+	</filter-mapping>
 </web-app>
