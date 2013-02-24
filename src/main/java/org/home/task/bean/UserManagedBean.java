@@ -16,8 +16,8 @@ public class UserManagedBean implements Serializable {
 
 	private UserService userService = new UserService();
 
-	public void createUser(String username, String password, String email) {
-		this.userService.createUser(username, password, email);
+	public void createUser(String username, String password, String email, String gender) {
+		this.userService.createUser(username, password, email, gender);
 	}
 
 	public void changePassword(String username, String newPassword) {

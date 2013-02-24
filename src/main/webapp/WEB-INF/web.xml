@@ -16,7 +16,7 @@
  
 	<!-- Welcome page -->
 	<welcome-file-list>
-		<welcome-file>faces/index.xhtml</welcome-file>
+		<welcome-file>/index.xhtml</welcome-file>
 	</welcome-file-list>
  
 	<!-- JSF mapping -->
@@ -29,18 +29,19 @@
 	<!-- Map these files with JSF -->
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.faces</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+	  <filter-name>Authentication</filter-name>
+	  <filter-class>org.home.task.filter.Authentication</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>Authentication</filter-name>
+	  <url-pattern>/internal.xhtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	  <filter-name>Authentication</filter-name>
+	  <url-pattern>/changePassword.xhtml</url-pattern>
+	</filter-mapping>
 </web-app>

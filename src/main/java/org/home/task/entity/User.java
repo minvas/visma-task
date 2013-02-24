@@ -4,11 +4,21 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	private String gender;
 
-	public User(String username, String password, String email) {
+	public User(String username, String password, String email, String gender) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.gender = gender;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getUsername() {

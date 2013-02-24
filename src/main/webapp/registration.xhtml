@@ -40,6 +40,14 @@
 	            <p:password id="password2" value="#{registration.password2}" label="Repeat password" required="true"/>
 	            <h:outputLabel value=""></h:outputLabel>
 	            <p:message for="password2" display="text"/>
+	            
+	            <h:outputLabel for="genderSelect" value="Gender *:" /> 
+			    <p:selectOneRadio id="genderSelect" value="#{registration.gender}">
+		            <f:selectItem itemLabel="Male" itemValue="male" />
+		            <f:selectItem itemLabel="Female" itemValue="female" />
+		        </p:selectOneRadio>
+	            <h:outputLabel value=""></h:outputLabel>
+	            <p:message for="genderSelect" display="text"/>
 			</h:panelGrid>
 			
 			<p:commandButton type="submit" value="Register" action="#{registration.register}" update="registrationGrid"/>

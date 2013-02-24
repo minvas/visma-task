@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.home.task.entity.User;
 
@@ -12,6 +13,8 @@ import org.home.task.entity.User;
 @SessionScoped
 public class LoginManagedBean implements Serializable {
 	private static final long serialVersionUID = 3144870497256690367L;
+
+	public static final String AUTH_KEY = "username";
 
 	@ManagedProperty(value = "#{user}")
 	private UserManagedBean userManagedBean;
@@ -46,9 +49,14 @@ public class LoginManagedBean implements Serializable {
 	public String login() {
 		User user = this.userManagedBean.getByUsername(this.username);
 		if (user != null && user.getPassword().equals(password)) {
-			System.out.println("User logged-in: " + username);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(AUTH_KEY, username);
 			return "internal?faces-redirect=true";
 		}
 		return null;
+	}
+
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "index?faces-redirect=true";
 	}
 }

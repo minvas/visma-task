@@ -17,6 +17,7 @@ public class RegistrationManagedBean {
 	private String email;
 	private String password1;
 	private String password2;
+	private String gender;
 
 	public UserManagedBean getUserManagedBean() {
 		return userManagedBean;
@@ -24,6 +25,14 @@ public class RegistrationManagedBean {
 
 	public void setUserManagedBean(UserManagedBean userManagedBean) {
 		this.userManagedBean = userManagedBean;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getUsername() {
@@ -69,7 +78,7 @@ public class RegistrationManagedBean {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "This username was taken by someone else.", null));
 		} else {
-			this.userManagedBean.createUser(this.username, this.password1, this.email);
+			this.userManagedBean.createUser(this.username, this.password1, this.email, this.gender);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration completed successfully.", null));
 			clear();

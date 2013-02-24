@@ -61,11 +61,9 @@ public class PasswordManagedBean {
 	}
 
 	public String changePassword() {
-		System.out.println(loginManagedBean.getUsername());
 		User user = userManagedBean.getByUsername(loginManagedBean.getUsername());
 		if (user != null) {
 			if (!user.getPassword().equals(this.currentPassword)) {
-				System.out.println(this.currentPassword);
 				FacesContext.getCurrentInstance().addMessage("passwordChangeForm:currentPassword",
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Password is not correct", null));
 				return null;
